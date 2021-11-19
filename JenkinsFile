@@ -5,9 +5,6 @@ pipeline {
     stages {
 
         stage('Docker Build and Push to GCR') {
-            when {
-                branch 'dev_int'
-            }
             steps{
                 script {
                     echo "${STAGE_NAME}"
