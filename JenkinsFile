@@ -1,0 +1,31 @@
+pipeline {
+   
+    agent any
+
+    stages {
+
+        stage('Docker Build and Push to GCR') {
+            when {
+                branch 'dev_int'
+            }
+            steps{
+                script {
+                    echo "${STAGE_NAME}"
+                    def app = docker.build("gcr.io/vc-fallen-dev-int/mediawiki")
+                    withDockerRegistry(credentialsId:'gcr:vc-fallen-dev-int', url: 'https://gcr.io') {
+                    app.push("${env.BUILD_NUMBER}")
+                    app.push("latest")
+                }
+                }
+                withCredentials([file(credentialsId: 'gcs-sa', variable: 'gc_key')]) {
+                    sh("gcloud auth activate-service-account --key-file=${GC_KEY}")
+                    sh("gcloud container clusters get-credentials mediawiki-cluster --quiet --region us-central1 --project vc-fallen-dev-int")
+
+                    sh " /usr/local/bin/helm ls "
+                    sh " /usr/local/bin/helm upgrade --install --force mediawiki helm/mediawiki --set=image.tag=${env.BUILD_NUMBER} "
+                    sh " sleep 5 "
+                }
+            }
+        }
+
+}
