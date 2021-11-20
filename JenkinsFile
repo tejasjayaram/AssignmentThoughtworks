@@ -15,16 +15,15 @@ pipeline {
                     sh "ls -lrt"
                 }
                 }
-                withCredentials([file(credentialsId: 'gcs-sa', variable: 'gc_key')]) {
+                //withCredentials([file(credentialsId: 'gcs-sa', variable: 'gc_key')]) {
                     //sh("gcloud auth activate-service-account --key-file=${gc_key}")
                     //sh("gcloud container clusters get-credentials mediawiki-cluster --quiet --region us-central1 --project vc-fallen-dev-int")
-                     sh "ls -lrt"
+                     //sh "ls -lrt"
                     //sh " /usr/local/bin/helm ls "
                     //sh " /usr/local/bin/helm upgrade --install --force mediawiki helm/mediawiki --set=image.tag=${env.BUILD_NUMBER} "
                     //sh " sleep 5 "
-                }
+               // }
             }
         }
 
 }
-
