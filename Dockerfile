@@ -12,7 +12,6 @@ RUN apt install -y wget  > /dev/null 2>&1 \
     && chmod -R g+rwx /var/www \
     && cd /var/www \
     && tar -zxf /opt/mediawiki-1.37.0.tar.gz  > /dev/null 2>&1 \
-    && chown -R apache:apache /var/www/mediawiki-1.37.0 \
     && ln -s mediawiki-1.37.0/ mediawiki \
     && sed -e 's/DocumentRoot "/var/www"/DocumentRoot "/var/www/mediawiki"/g' 
 
