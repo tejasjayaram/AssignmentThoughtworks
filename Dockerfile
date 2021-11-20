@@ -1,5 +1,7 @@
 FROM httpd:2.4
 
+USER root
+
 RUN apt update
 
 WORKDIR /opt
