@@ -25,7 +25,7 @@ pipeline {
                     sh("gcloud container clusters get-credentials mediawiki-cluster --quiet --region us-central1 --project vc-fallen-devint")
                      sh "ls -lrt"
                     sh "helm ls "
-                    sh "helm install mediawiki helm/mediawiki"
+                    sh "helm upgrade --force mediawiki helm/mediawiki"
                     sh "sleep 5"
 
                      }
