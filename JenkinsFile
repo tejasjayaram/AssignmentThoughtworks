@@ -24,9 +24,9 @@ pipeline {
                     sh("gcloud auth activate-service-account --key-file=${gc_key}")
                     sh("gcloud container clusters get-credentials mediawiki-cluster --quiet --region us-central1 --project vc-fallen-devint")
                      sh "ls -lrt"
-                    sh " /usr/local/bin/helm ls "
-                    sh " /usr/local/bin/helm install mediawiki helm/mediawiki"
-                    sh " sleep 5 "
+                    sh "helm ls "
+                    sh "helm install mediawiki helm/mediawiki"
+                    sh "sleep 5"
 
                      }
                 }
