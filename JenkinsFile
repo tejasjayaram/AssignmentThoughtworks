@@ -8,6 +8,7 @@ pipeline {
             steps{
                 script {
                     sh ('''
+                    whomai
                     docker build -t gcr.io/vc-fallen-devint/mediawiki .
                     docker push gcr.io/vc-fallen-devint/mediawiki
                     ''') 
