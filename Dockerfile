@@ -13,7 +13,8 @@ RUN apt install -y wget  > /dev/null 2>&1 \
     && cd /var/www \
     && tar -zxf /opt/mediawiki-1.37.0.tar.gz  > /dev/null 2>&1 \
     && ln -s mediawiki-1.37.0/ mediawiki \
-    && sed -e 's/DocumentRoot "/var/www"/DocumentRoot "/var/www/mediawiki"/g' 
+    && sed -i -e "s|\/var\/www|\/var\/www\/mediawiki|g" /usr/local/apache2/conf/httpd.conf
+#&& sed -e 's/DocumentRoot "/var/www"/DocumentRoot "/var/www/mediawiki"/g' 
 
 RUN echo "ServerName localhost" >> /usr/local/apache2/conf/httpd.conf
 
