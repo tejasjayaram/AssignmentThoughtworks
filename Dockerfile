@@ -4,7 +4,8 @@ RUN apt update
 
 WORKDIR /opt
 
-RUN wget https://releases.wikimedia.org/mediawiki/1.37/mediawiki-1.37.0.tar.gz \
+RUN apt install wget \
+    && wget https://releases.wikimedia.org/mediawiki/1.37/mediawiki-1.37.0.tar.gz \
     && wget https://releases.wikimedia.org/mediawiki/1.37/mediawiki-1.37.0.tar.gz.sig \
     && gpg --verify mediawiki-1.37.0.tar.gz.sig mediawiki-1.37.0.tar.gz \
     && cd /var/www \
