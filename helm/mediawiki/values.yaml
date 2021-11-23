@@ -86,9 +86,9 @@ podManagementPolicy: "Parallel"
 
 persistence:
   enabled: true
-  labels: media-wiki-vol
+  labels: 
     enabled: false
-  annotations: {}
+    annotations: {}
 
 volumeClaimTemplate:
   accessModes: ["ReadWriteOnce"]
