@@ -312,6 +312,7 @@ docker_setup_db() {
 	if [ -n "$MARIADB_DATABASE" ]; then
 		mysql_note "Creating database ${MARIADB_DATABASE}"
 		docker_process_sql --database=mysql <<<"CREATE DATABASE IF NOT EXISTS \`$MARIADB_DATABASE\` ;"
+        docker_process_sql --database=mysql <<<"GRANT ALL PRIVILEGES ON \$`MARIADB_DATABASE\`.* TO \`$MARIADB_DATABASE\`@'localhost'` ;"
 	fi
 
 	if [ -n "$MARIADB_USER" ] && [ -n "$MARIADB_PASSWORD" ]; then
@@ -395,6 +396,11 @@ _main() {
 }
 
 file_env 'MARIADB_ROOT_PASSWORD' 'root'
+file_env 'MARIADB_USER' 'wiki'
+file_env 'MARIADB_PASSWORD' 'THISpasswordSHOULDbeCHANGED'
+file_env 'MARIADB_DATABASE' 'wikidatabase'
+
+
 
 # If we are sourced from elsewhere, don't perform any further actions
 if ! _is_sourced; then
