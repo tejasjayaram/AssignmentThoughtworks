@@ -11,6 +11,9 @@ pipeline {
                     whoami
                     docker build -t gcr.io/vc-fallen-devint/mediawiki .
                     docker push gcr.io/vc-fallen-devint/mediawiki
+                    cd ./dbDockerFile
+                    docker build -t gcr.io/vc-fallen-devint/mediawikidb .
+                    docker push gcr.io/vc-fallen-devint/mediawiki
                     ''') 
                 }
                 }
