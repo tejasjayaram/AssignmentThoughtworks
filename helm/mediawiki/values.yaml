@@ -87,7 +87,6 @@ podManagementPolicy: "Parallel"
 persistence:
   enabled: true
   labels: media-wiki-vol
-    # Add default labels for the volumeClaimTemplate of the StatefulSet
     enabled: false
   annotations: {}
 
