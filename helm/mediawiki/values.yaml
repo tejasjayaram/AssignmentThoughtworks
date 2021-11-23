@@ -6,6 +6,7 @@ replicaCount: 1
 
 image:
   repository: gcr.io/vc-fallen-devint/mediawiki
+  db-image: gcr.io/vc-fallen-devint/mediawikidb
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
@@ -80,3 +81,88 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+podManagementPolicy: "Parallel"
+
+persistence:
+  enabled: true
+  labels: media-wiki-vol
+    # Add default labels for the volumeClaimTemplate of the StatefulSet
+    enabled: false
+  annotations: {}
+
+volumeClaimTemplate:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 30Gi
+
+schedulerName: ""
+
+rbac:
+  create: false
+  serviceAccountAnnotations: {}
+  serviceAccountName: ""
+  automountToken: true
+
+antiAffinity: "hard"
+
+nodeAffinity: {}
+
+priorityClassName: ""
+
+terminationGracePeriod: 120
+
+secretMounts: []
+
+keystore: []
+
+extraVolumes: []
+
+
+enableServiceLinks: true
+
+extraInitContainers: []
+
+sysctlInitContainer:
+  enabled: true
+
+initResources: {}
+
+extraEnvs: []
+
+envFrom: []
+
+readinessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  successThreshold: 3
+  timeoutSeconds: 5
+
+protocol: http
+httpPort: 9200
+transportPort: 9300
+
+roles:
+  - master
+  - data
+  - data_content
+  - data_hot
+  - data_warm
+  - data_cold
+  - ingest
+  - ml
+  - remote_cluster_client
+  - transform
+
+esConfig: {}
+
+clusterHealthCheckParams: "wait_for_status=green&timeout=1s"
+
+
+extraVolumeMounts: []
+
+lifecycle: {}
+
+extraContainers: []
