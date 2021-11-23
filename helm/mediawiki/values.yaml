@@ -6,14 +6,14 @@ replicaCount: 1
 
 image:
   repository: gcr.io/vc-fallen-devint/mediawiki
-  db-image: gcr.io/vc-fallen-devint/mediawikidb
+  db_image: gcr.io/vc-fallen-devint/mediawikidb
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: "test"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -165,3 +165,9 @@ extraVolumeMounts: []
 lifecycle: {}
 
 extraContainers: []
+
+esMajorVersion: "latest"
+
+secret:
+  enabled: true
+  password: "" 
